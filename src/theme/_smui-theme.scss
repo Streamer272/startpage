@@ -1,0 +1,30 @@
+@use 'sass:color';
+
+@use '@material/theme/color-palette';
+
+// Svelte Colors!
+@use '@material/theme/index' as theme with (
+	// angular material pink&blue primary
+	$primary: #d81b60,
+	// angular material pink&blue accent
+	$secondary: #546e7a,
+	// neutral-900
+	$surface: #171717,
+	// neutral-900
+	$background: #171717,
+	// red-600
+	$error: #dc2626
+);
+
+html,
+body {
+	background-color: theme.$surface;
+	color: theme.$on-surface;
+}
+
+a {
+	color: #40b3ff;
+}
+a:visited {
+	color: color.scale(#40b3ff, $lightness: -35%);
+}

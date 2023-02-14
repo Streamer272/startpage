@@ -4,8 +4,20 @@
 
 <div class="w-96 flex items-center justify-center flex-col">
 	{#if label}
-		<h1 class="text-4xl">{label}</h1>
+		<h1 class="text-4xl mb-3">{label}</h1>
 	{/if}
-	<div class="w-full h-px border-none bg-neutral-100" />
+	<div class="w-full h-px border-none gradient mb-4" />
 	<slot />
 </div>
+
+<style lang="postcss">
+	.gradient {
+		background-image: linear-gradient(
+			45deg,
+			theme(colors.neutral.900),
+			theme(colors.neutral.400),
+			theme(colors.neutral.400),
+			theme(colors.neutral.900)
+		);
+	}
+</style>
