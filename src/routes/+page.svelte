@@ -3,5 +3,12 @@
 	import Time from '../lib/components/Time.svelte';
 </script>
 
-<Time />
-<Search />
+<div>
+	<a href="/settings" class="absolute top-4 right-4">
+		<span class="material-symbols-outlined text-5xl">settings</span>
+	</a>
+
+	<Time />
+	<div class="h-8" />
+	<Search />
+</div>
