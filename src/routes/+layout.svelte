@@ -6,8 +6,9 @@
 
 <style lang="postcss">
 	:global(html) {
-		color: theme(colors.gray.100);
-		background-color: theme(colors.gray.800);
+		font-family: 'Roboto', sans-serif;
+		color: theme(colors.neutral.100);
+		background-color: theme(colors.neutral.900);
 		display: flex;
 		align-items: center;
 		justify-content: center;

@@ -21,7 +21,7 @@
 </script>
 
 <div class="flex items-center justify-center flex-col">
-	<p class="text-4xl p-0 m-0 text-gray-100">It's</p>
-	<p class="text-4xl p-0 m-0 text-gray-200">{time}</p>
-	<p class="text-3xl p-0 m-0 text-gray-300">{date}</p>
+	<p class="text-4xl p-0 m-0 text-neutral-100">It's</p>
+	<p class="text-4xl p-0 m-0 text-neutral-200">{time}</p>
+	<p class="text-3xl p-0 m-0 text-neutral-300">{date}</p>
 </div>

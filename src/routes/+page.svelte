@@ -1,7 +1,7 @@
 <script>
+	import Search from '$lib/components/Search.svelte';
 	import Time from '../lib/components/Time.svelte';
-
-    $: console.log("PAGECAHGNED")
 </script>
 
 <Time />
+<Search />
