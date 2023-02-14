@@ -6,7 +6,7 @@
 
 <style lang="postcss">
 	:global(html) {
-		font-family: 'Roboto', sans-serif;
+		font-family: 'Ubuntu', sans-serif;
 		color: theme(colors.neutral.100);
 		background-color: theme(colors.neutral.900);
 		display: flex;
