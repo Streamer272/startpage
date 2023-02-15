@@ -4,7 +4,7 @@
 </script>
 
 <div>
-	<a href="/settings" class="absolute top-4 right-4">
+	<a href="/settings" class="absolute top-4 right-4 visited:text-inherit">
 		<span class="material-symbols-outlined text-5xl">settings</span>
 	</a>
 
