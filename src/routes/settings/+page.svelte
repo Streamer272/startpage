@@ -1,30 +1,70 @@
-<script>
+<script lang="ts">
 	import Section from '$lib/components/Section.svelte';
 	import Switch from '@smui/switch';
 	import FormField from '@smui/form-field';
 	import Select, { Option } from '@smui/select';
-	import { HOUR_FORMAT_OPTIONS, DAY_FORMAT_OPTIONS, MONTH_FORMAT_OPTIONS, YEAR_FORMAT_OPTIONS} from '$lib/types/options';
+	import {
+		HOUR_FORMAT_OPTIONS,
+		DAY_FORMAT_OPTIONS,
+		MONTH_FORMAT_OPTIONS,
+		YEAR_FORMAT_OPTIONS,
+		DEFAULT_ROWS,
+		DEFAULT_ENABLE_SEARCH,
+		DEFAULT_ENABLE_DATE,
+		DEFAULT_DAY_FORMAT,
+		DEFAULT_MONTH_FORMAT,
+		DEFAULT_YEAR_FORMAT,
+		DEFAULT_ENABLE_INTRODUCTION,
+		DEFAULT_ENABLE_GREETING,
+		DEFAULT_ENABLE_TIME,
+		DEFAULT_SHOW_SECONDS,
+		DEFAULT_HOUR_FORMAT
+	} from '$lib/types/defaults';
 
 	// introduction
-	let enableIntroduction = true;
-	let enableGreeting = false;
+	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);
+	let enableGreeting = getSetting('enableGreeting', DEFAULT_ENABLE_GREETING);
+	$: setSetting('enableIntroduction', enableIntroduction);
+	$: setSetting('enableGreeting', enableGreeting);
 
 	// time
-	let enableTime = true;
-	let showSeconds = false;
-	let hourFormat = '12 hour';
+	let enableTime = getSetting('enableTime', DEFAULT_ENABLE_TIME);
+	let showSeconds = getSetting('showSeconds', DEFAULT_SHOW_SECONDS);
+	let hourFormat = getSetting('hourFormat', DEFAULT_HOUR_FORMAT);
+	$: setSetting('enableTime', enableTime);
+	$: setSetting('showSeconds', showSeconds);
+	$: setSetting('hourFormat', hourFormat);
 
 	// date
-	let enableDate = true;
-	let dayFormat = 'Short (Mon)';
-	let monthFormat = 'Short (Jan)';
-	let yearFormat = 'Long (2023)';
+	let enableDate = getSetting('enableDate', DEFAULT_ENABLE_DATE);
+	let dayFormat = getSetting('dayFormat', DEFAULT_DAY_FORMAT);
+	let monthFormat = getSetting('monthFormat', DEFAULT_MONTH_FORMAT);
+	let yearFormat = getSetting('yearFormat', DEFAULT_YEAR_FORMAT);
+	$: setSetting('enableDate', enableDate);
+	$: setSetting('dayFormat', dayFormat);
+	$: setSetting('monthFormat', monthFormat);
+	$: setSetting('yearFormat', yearFormat);
 
 	// search
-	let enableSearch = true;
+	let enableSearch = getSetting('enableSearch', DEFAULT_ENABLE_SEARCH);
+	$: setSetting('enableSearch', enableSearch);
 
 	// rows
-	let rows = [];
+	let rows = getSetting('rows', DEFAULT_ROWS);
+	$: setSetting('rows', rows);
+
+	export function getSetting<T>(name: string, defaultValue: T): T {
+		if (typeof window === 'undefined') return defaultValue;
+
+		const value = localStorage.getItem(name);
+		return value ? JSON.parse(value) : defaultValue;
+	}
+
+	export function setSetting<T>(name: string, value: T) {
+		if (typeof window === 'undefined') return;
+
+		localStorage.setItem(name, JSON.stringify(value));
+	}
 </script>
 
 <div>

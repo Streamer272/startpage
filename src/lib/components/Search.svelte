@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	let value = '';
 </script>
 
@@ -13,7 +13,7 @@
 		bind:value
 		class="bg-inherit border-b-1 border-neutral-100 border-solid mx-4 focus:outline-none focus:border-none text-xl"
 	/>
-	<a href="https://www.google.com/search?q={value}">
-		<span class="material-symbols-outlined text-3xl w-8 h-8">search</span>
+	<a href="https://www.google.com/search?q={value}" class="visited:text-inherit">
+		<span class="material-symbols-outlined text-3xl w-8 h-8 visited:text-inherit">search</span>
 	</a>
 </div>

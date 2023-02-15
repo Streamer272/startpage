@@ -1,8 +1,12 @@
-<script>
+<script lang="ts">
 	import '../app.css';
 </script>
 
 <slot />
+
+<svelte:head>
+	<title>Start</title>
+</svelte:head>
 
 <style lang="postcss">
 	:global(html) {
