@@ -2,9 +2,9 @@
 	export let label = '';
 </script>
 
-<div class="w-96 flex items-center justify-center flex-col">
+<div class="w-96 flex items-center justify-center flex-col mb-10 last:mb-0">
 	{#if label}
-		<h1 class="text-4xl mb-3">{label}</h1>
+		<h1 class="text-3xl mb-2">{label}</h1>
 	{/if}
 	<div class="w-full h-px border-none gradient mb-4" />
 	<slot />

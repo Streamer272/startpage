@@ -3,6 +3,7 @@
 	import Switch from '@smui/switch';
 	import FormField from '@smui/form-field';
 	import Select, { Option } from '@smui/select';
+	import { HOUR_FORMAT_OPTIONS, DAY_FORMAT_OPTIONS, MONTH_FORMAT_OPTIONS, YEAR_FORMAT_OPTIONS} from '$lib/types/options';
 
 	// introduction
 	let enableIntroduction = true;
@@ -55,11 +56,41 @@
 		</FormField>
 
 		<Select bind:value={hourFormat} label="Hour format">
-			<Option value={'12 hour'}>12 hour</Option>
-			<Option value={'24 hour'}>24 hour</Option>
+			{#each HOUR_FORMAT_OPTIONS as option}
+				<Option value={option}>{option}</Option>
+			{/each}
 		</Select>
 	</Section>
-	
+
 	<Section label={'Date'}>
+		<FormField align={'end'}>
+			<Switch bind:checked={enableDate} />
+			<span slot="label">Enable date</span>
+		</FormField>
+
+		<Select bind:value={dayFormat} label="Day format">
+			{#each DAY_FORMAT_OPTIONS as option}
+				<Option value={option}>{option}</Option>
+			{/each}
+		</Select>
+
+		<Select bind:value={monthFormat} label="Month format">
+			{#each MONTH_FORMAT_OPTIONS as option}
+				<Option value={option}>{option}</Option>
+			{/each}
+		</Select>
+
+		<Select bind:value={yearFormat} label="Year format">
+			{#each YEAR_FORMAT_OPTIONS as option}
+				<Option value={option}>{option}</Option>
+			{/each}
+		</Select>
+	</Section>
+
+	<Section label={'Search'}>
+		<FormField align={'end'}>
+			<Switch bind:checked={enableSearch} />
+			<span slot="label">Enable search</span>
+		</FormField>
 	</Section>
 </div>
