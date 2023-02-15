@@ -1,4 +1,5 @@
 export type Tile = any;
+export type Row = Tile[];
 
 export const TileTypes = {
 	Weather: newWeather,

@@ -2,10 +2,12 @@
 	import Search from '$lib/components/Search.svelte';
 	import Time from '$lib/components/Time.svelte';
 	import Tile from '$lib/components/Tile.svelte';
+	import Weather from '$lib/components/Weather.svelte';
 	import { DEFAULT_ENABLE_SEARCH, getSetting } from '$lib/types/settings';
+	import type { Row } from '$lib/types/tile';
 	import { newShortcut, newWeather } from '$lib/types/tile';
 
-	const rows = [[newWeather(), newShortcut(), newShortcut()]];
+	const rows: Row[] = [[newWeather(), newShortcut(), newShortcut()]];
 </script>
 
 <div class="flex items-center justify-center flex-col">
@@ -23,7 +25,7 @@
 		<div class="flex items-center justify-center">
 			{#each row as tile}
 				{#if tile.type === 'Weather'}
-					<Tile>Weather</Tile>
+					<Weather />
 				{:else if tile.type === 'Shortcut'}
 					<Tile>Shortcut</Tile>
 				{/if}

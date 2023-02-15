@@ -1,3 +1,5 @@
+import type { Row } from '$lib/types/tile';
+
 export const HOUR_FORMAT_OPTIONS = ['12 hour', '24 hour'];
 export const DAY_FORMAT_OPTIONS = ['Short (Mon)', 'Long (Monday)', "Don't show day"];
 export const MONTH_FORMAT_OPTIONS = ['Short (Jan)', 'Long (January)'];
@@ -22,7 +24,7 @@ export const DEFAULT_YEAR_FORMAT = YEAR_FORMAT_OPTIONS[1];
 export const DEFAULT_ENABLE_SEARCH = true;
 
 // rows
-export const DEFAULT_ROWS: string[] = [];
+export const DEFAULT_ROWS: Row[] = [];
 
 export function getSetting<T>(name: string, defaultValue: T): T {
 	if (typeof window === 'undefined') return defaultValue;
@@ -37,3 +39,20 @@ export function setSetting<T>(name: string, value: T) {
 
 	localStorage.setItem(name, JSON.stringify(value));
 }
+
+// --- START (copy pasted) ---
+export function getCookie(name: string) {
+	var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+	return v ? v[2] : null;
+}
+
+function setCookie(name: string, value: string, expires: Date) {
+	document.cookie = name + '=' + value + ';path=/;expires=' + expires.toUTCString();
+}
+
+function deleteCookie(name: string) {
+	const date = new Date();
+	date.setDate(date.getDate() - 1);
+	setCookie(name, '', date);
+}
+// --- END ---

@@ -22,6 +22,7 @@
 		getSetting,
 		setSetting
 	} from '$lib/types/settings';
+	import type { Row } from '$lib/types/tile';
 
 	// introduction
 	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);
@@ -30,29 +31,29 @@
 	$: setSetting('enableGreeting', enableGreeting);
 
 	// time
-	let enableTime = getSetting('enableTime', DEFAULT_ENABLE_TIME);
-	let showSeconds = getSetting('showSeconds', DEFAULT_SHOW_SECONDS);
-	let hourFormat = getSetting('hourFormat', DEFAULT_HOUR_FORMAT);
+	let enableTime: boolean = getSetting('enableTime', DEFAULT_ENABLE_TIME);
+	let showSeconds: boolean = getSetting('showSeconds', DEFAULT_SHOW_SECONDS);
+	let hourFormat: string = getSetting('hourFormat', DEFAULT_HOUR_FORMAT);
 	$: setSetting('enableTime', enableTime);
 	$: setSetting('showSeconds', showSeconds);
 	$: setSetting('hourFormat', hourFormat);
 
 	// date
-	let enableDate = getSetting('enableDate', DEFAULT_ENABLE_DATE);
-	let dayFormat = getSetting('dayFormat', DEFAULT_DAY_FORMAT);
-	let monthFormat = getSetting('monthFormat', DEFAULT_MONTH_FORMAT);
-	let yearFormat = getSetting('yearFormat', DEFAULT_YEAR_FORMAT);
+	let enableDate: boolean = getSetting('enableDate', DEFAULT_ENABLE_DATE);
+	let dayFormat: string = getSetting('dayFormat', DEFAULT_DAY_FORMAT);
+	let monthFormat: string = getSetting('monthFormat', DEFAULT_MONTH_FORMAT);
+	let yearFormat: string = getSetting('yearFormat', DEFAULT_YEAR_FORMAT);
 	$: setSetting('enableDate', enableDate);
 	$: setSetting('dayFormat', dayFormat);
 	$: setSetting('monthFormat', monthFormat);
 	$: setSetting('yearFormat', yearFormat);
 
 	// search
-	let enableSearch = getSetting('enableSearch', DEFAULT_ENABLE_SEARCH);
+	let enableSearch: boolean = getSetting('enableSearch', DEFAULT_ENABLE_SEARCH);
 	$: setSetting('enableSearch', enableSearch);
 
 	// rows
-	let rows = getSetting('rows', DEFAULT_ROWS);
+	let rows: Row[] = getSetting('rows', DEFAULT_ROWS);
 	$: setSetting('rows', rows);
 </script>
 
