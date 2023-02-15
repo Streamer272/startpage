@@ -1,4 +1,5 @@
 <script lang="ts">
+	import CircularProgress from '@smui/circular-progress';
 	import Tile from '$lib/components/Tile.svelte';
 	import axios from 'axios';
 	import { getCookie, setCookie } from '$lib/types/settings';
@@ -9,15 +10,13 @@
 
 	onMount(async () => {
 		function getImageFromWeatherCode(code: number): string | undefined {
-			const prefix = '/assets/images/';
-
-			if (0 <= code && code <= 5) return prefix + 'sunny.png';
-			else if (6 <= code && code <= 19) return prefix + 'clouds.png';
-			else if (20 <= code && code <= 29) return prefix + 'rain.png';
-			else if (30 <= code && code <= 49) return prefix + 'clouds.png';
-			else if (50 <= code && code <= 69) return prefix + 'rain.png';
-			else if (70 <= code && code <= 79) return prefix + 'snow.png';
-			else if (80 <= code && code <= 99) return prefix + 'rain.png';
+			if (0 <= code && code <= 5) return '/sunny.png';
+			else if (6 <= code && code <= 19) return '/clouds.png';
+			else if (20 <= code && code <= 29) return '/rain.png';
+			else if (30 <= code && code <= 49) return '/clouds.png';
+			else if (50 <= code && code <= 69) return '/rain.png';
+			else if (70 <= code && code <= 79) return '/snow.png';
+			else if (80 <= code && code <= 99) return '/rain.png';
 			else return undefined;
 		}
 
@@ -36,8 +35,8 @@
 			weatherImage = getImageFromWeatherCode(weather.data.current_weather.weathercode) ?? '';
 			const expires = new Date();
 			expires.setHours(expires.getHours() + 1);
-			setCookie('temp', temp, { expires: expires });
-			setCookie('weatherImage', weatherImage, { expires: expires });
+			setCookie('temp', temp, expires);
+			setCookie('weatherImage', weatherImage, expires);
 		}
 
 		if (getCookie('temp')) {
@@ -69,5 +68,14 @@
 </script>
 
 <Tile>
-	<p>Weather</p>
+	<div class="flex items-center justify-center">
+		{#if temp}
+			<p class="p-0 m-0 text-xl">{temp}</p>
+			{#if weatherImage}
+				<img src={weatherImage} alt="Weather" class="w-8 h-8 ml-3" />
+			{/if}
+		{:else}
+			<CircularProgress indeterminate style="width: 2rem; height: 2rem;" />
+		{/if}
+	</div>
 </Tile>

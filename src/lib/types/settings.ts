@@ -30,7 +30,6 @@ export function getSetting<T>(name: string, defaultValue: T): T {
 	if (typeof window === 'undefined') return defaultValue;
 
 	const value = localStorage.getItem(name);
-	console.log('reading', name, '=', value);
 	return value ? JSON.parse(value) : defaultValue;
 }
 
@@ -46,11 +45,11 @@ export function getCookie(name: string) {
 	return v ? v[2] : null;
 }
 
-function setCookie(name: string, value: string, expires: Date) {
+export function setCookie(name: string, value: string, expires: Date) {
 	document.cookie = name + '=' + value + ';path=/;expires=' + expires.toUTCString();
 }
 
-function deleteCookie(name: string) {
+export function deleteCookie(name: string) {
 	const date = new Date();
 	date.setDate(date.getDate() - 1);
 	setCookie(name, '', date);
