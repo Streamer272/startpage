@@ -3,7 +3,7 @@
 </script>
 
 <div
-	class="flex items-center justify-center px-4 py-3 rounded-full bg-neutral-800 border border-solid border-neutral-700"
+	class="flex items-center justify-center px-4 py-3 rounded-full bg-neutral-800 border border-solid border-neutral-700 w-fit"
 >
 	<a href="https://www.google.com" class="">
 		<img src="/google.png" alt="Google" class="w-8 h-8" />

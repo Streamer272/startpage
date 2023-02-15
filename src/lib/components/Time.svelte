@@ -16,7 +16,6 @@
 		getSetting,
 		DEFAULT_ENABLE_INTRODUCTION
 	} from '$lib/types/settings';
-	import { browser } from '$app/environment';
 
 	let greeting = '';
 	let time = '';
@@ -52,7 +51,8 @@
 				getSetting('enableTime', DEFAULT_ENABLE_TIME) ||
 				getSetting('enableDate', DEFAULT_ENABLE_DATE)
 			) {
-				greeting += "It's";
+				if (greeting) greeting += ", it's";
+				else greeting += "It's";
 			}
 		}
 
