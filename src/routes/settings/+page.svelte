@@ -18,8 +18,10 @@
 		DEFAULT_ENABLE_GREETING,
 		DEFAULT_ENABLE_TIME,
 		DEFAULT_SHOW_SECONDS,
-		DEFAULT_HOUR_FORMAT
-	} from '$lib/types/defaults';
+		DEFAULT_HOUR_FORMAT,
+		getSetting,
+		setSetting
+	} from '$lib/types/settings';
 
 	// introduction
 	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);
@@ -52,19 +54,6 @@
 	// rows
 	let rows = getSetting('rows', DEFAULT_ROWS);
 	$: setSetting('rows', rows);
-
-	export function getSetting<T>(name: string, defaultValue: T): T {
-		if (typeof window === 'undefined') return defaultValue;
-
-		const value = localStorage.getItem(name);
-		return value ? JSON.parse(value) : defaultValue;
-	}
-
-	export function setSetting<T>(name: string, value: T) {
-		if (typeof window === 'undefined') return;
-
-		localStorage.setItem(name, JSON.stringify(value));
-	}
 </script>
 
 <div>

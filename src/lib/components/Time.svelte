@@ -12,10 +12,11 @@
 		DEFAULT_SHOW_SECONDS,
 		DEFAULT_YEAR_FORMAT,
 		MONTH_FORMAT_OPTIONS,
-		YEAR_FORMAT_OPTIONS
-	} from '$lib/types/defaults';
+		YEAR_FORMAT_OPTIONS,
+		getSetting,
+		DEFAULT_ENABLE_INTRODUCTION
+	} from '$lib/types/settings';
 	import { browser } from '$app/environment';
-	import type { prerendered } from '$service-worker';
 
 	let greeting = '';
 	let time = '';
@@ -23,17 +24,9 @@
 	let timeFormat = '';
 	let dateFormat = '';
 
-	export function getSetting<T>(name: string, defaultValue: T): T {
-		if (typeof window === 'undefined') return defaultValue;
-
-		console.log('reading', name);
-		const value = localStorage.getItem(name);
-		return value ? JSON.parse(value) : defaultValue;
-	}
-
 	function updateTime() {
-		time = dayjs().format(timeFormat);
-		date = dayjs().format(dateFormat);
+		if (timeFormat) time = dayjs().format(timeFormat);
+		if (dateFormat) date = dayjs().format(dateFormat);
 	}
 
 	$: {
@@ -41,8 +34,8 @@
 		timeFormat = '';
 		dateFormat = '';
 
-		if (browser) {
-			// greeting
+		// introduction
+		if (getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION)) {
 			if (getSetting('enableGreeting', DEFAULT_ENABLE_GREETING)) {
 				const now = dayjs();
 				if (0 <= now.get('hour') && now.get('hour') < 6) {
@@ -61,14 +54,20 @@
 			) {
 				greeting += "It's";
 			}
+		}
 
+		// time
+		if (getSetting('enableTime', DEFAULT_ENABLE_TIME)) {
 			const seconds = getSetting('showSeconds', DEFAULT_SHOW_SECONDS) ? ':ss' : '';
 			if (getSetting('hourFormat', DEFAULT_HOUR_FORMAT) == '12 hour') {
 				timeFormat = `h:mm${seconds} A`;
 			} else {
 				timeFormat = `HH:mm${seconds}`;
 			}
+		}
 
+		// date
+		if (getSetting('enableDate', DEFAULT_ENABLE_DATE)) {
 			const day = ['ddd ', 'dddd ', ' '].at(
 				DAY_FORMAT_OPTIONS.indexOf(getSetting('dayFormat', DEFAULT_DAY_FORMAT))
 			);
@@ -89,7 +88,7 @@
 		}, 500);
 	});
 
-	export const prerendered = false
+	export const prerendered = false;
 </script>
 
 <div class="flex items-center justify-center flex-col">
