@@ -3,31 +3,13 @@
 	import Time from '$lib/components/Time.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 	import Weather from '$lib/components/Weather.svelte';
-	import { DEFAULT_ENABLE_SEARCH, getSetting } from '$lib/types/settings';
+	import { DEFAULT_ENABLE_SEARCH, DEFAULT_ROWS, getSetting } from '$lib/types/settings';
 	import type { Row } from '$lib/types/tile';
-	import { newShortcut, newWeather } from '$lib/types/tile';
 
-	const rows: Row[] = [
-		[
-			newWeather(),
-			newShortcut(
-				'https://reddit.com',
-				'Reddit',
-				'https://reddit.com/favicon.ico',
-				'https://new.svitan.dev',
-				'New',
-				'https://new.svitan.dev/favicon.ico'
-			),
-			newShortcut(
-				'https://console.firebase.google.com',
-				'Firebase',
-				'http://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_96dp.png'
-			)
-		]
-	];
+	const rows: Row[] = getSetting('rows', DEFAULT_ROWS);
 </script>
 
-<div class="flex items-center justify-center flex-col">
+<div class="flex items-center justify-center flex-col my-8">
 	<a href="/settings" class="absolute top-4 right-4 visited:text-inherit">
 		<span class="material-symbols-outlined text-5xl visited:text-inherit">settings</span>
 	</a>

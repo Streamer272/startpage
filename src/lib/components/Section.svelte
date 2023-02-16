@@ -2,7 +2,7 @@
 	export let label = '';
 </script>
 
-<div class="w-96 flex items-center justify-center flex-col mb-10 last:mb-0">
+<div class="w-96 flex items-center justify-center flex-col mb-10">
 	{#if label}
 		<h1 class="text-3xl mb-2">{label}</h1>
 	{/if}

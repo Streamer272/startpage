@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Section from '$lib/components/Section.svelte';
+	import Tile from '$lib/components/Tile.svelte';
 	import Switch from '@smui/switch';
 	import FormField from '@smui/form-field';
 	import Select, { Option } from '@smui/select';
@@ -23,6 +24,8 @@
 		setSetting
 	} from '$lib/types/settings';
 	import type { Row } from '$lib/types/tile';
+
+	let rerender = false;
 
 	// introduction
 	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);
@@ -54,10 +57,21 @@
 
 	// rows
 	let rows: Row[] = getSetting('rows', DEFAULT_ROWS);
+	let rowsLength = rows.length;
 	$: setSetting('rows', rows);
+
+	function createRow() {
+		rows.push([]);
+		rowsLength = rows.length;
+		console.log('?', rows);
+	}
+
+	function createTile(rowIndex: number) {
+		// TODO
+	}
 </script>
 
-<div>
+<div class="flex items-center justify-center flex-col my-8">
 	<a href="/" class="absolute top-4 right-4 visited:text-inherit">
 		<span class="material-symbols-outlined text-5xl">home</span>
 	</a>
@@ -123,4 +137,27 @@
 			<span slot="label">Enable search</span>
 		</FormField>
 	</Section>
+
+	{#each { length: rowsLength } as _, index}
+		<Section label={'Row'}>
+			<div class="flex items-center justify-center">
+				{#each rows[index] as tile}
+					<Tile>
+						<p>{tile.type}</p>
+					</Tile>
+				{/each}
+				{#if rows[index].length < 3}
+					<Tile>
+						<button on:click={() => createTile(index)}>
+							<span class="material-symbols-outlined text-neutral-100 text-3xl">add</span>
+						</button>
+					</Tile>
+				{/if}
+			</div>
+		</Section>
+	{/each}
+
+	<button on:click={createRow}>
+		<span class="material-symbols-outlined text-neutral-100 text-5xl">add</span>
+	</button>
 </div>

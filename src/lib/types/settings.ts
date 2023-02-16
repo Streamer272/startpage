@@ -1,4 +1,5 @@
 import type { Row } from '$lib/types/tile';
+import { newWeather, newShortcut } from '$lib/types/tile';
 
 export const HOUR_FORMAT_OPTIONS = ['12 hour', '24 hour'];
 export const DAY_FORMAT_OPTIONS = ['Short (Mon)', 'Long (Monday)', "Don't show day"];
@@ -24,7 +25,24 @@ export const DEFAULT_YEAR_FORMAT = YEAR_FORMAT_OPTIONS[1];
 export const DEFAULT_ENABLE_SEARCH = true;
 
 // rows
-export const DEFAULT_ROWS: Row[] = [];
+export const DEFAULT_ROWS: Row[] = [
+	[
+		newWeather(),
+		newShortcut(
+			'https://reddit.com',
+			'Reddit',
+			'https://reddit.com/favicon.ico',
+			'https://new.svitan.dev',
+			'New',
+			'https://new.svitan.dev/favicon.ico'
+		),
+		newShortcut(
+			'https://console.firebase.google.com',
+			'Firebase',
+			'http://www.gstatic.com/mobilesdk/160503_mobilesdk/logo/2x/firebase_96dp.png'
+		)
+	]
+];
 
 export function getSetting<T>(name: string, defaultValue: T): T {
 	if (typeof window === 'undefined') return defaultValue;
