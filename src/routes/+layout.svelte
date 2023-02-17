@@ -3,6 +3,7 @@
 </script>
 
 <slot />
+<a href="https://github.com/Streamer272/startpage" class="absolute top-2 left-3 text-xl text-inherit visited:text-inherit">repo</a>
 
 <svelte:head>
 	<title>Start</title>
