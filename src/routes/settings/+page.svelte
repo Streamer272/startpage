@@ -178,7 +178,11 @@
 						{:else if tile.type === 'Shortcut'}
 							<div class="flex items-center justify-center">
 								<button on:click={() => changeTileValue(index, tileIndex, 'icon1')}>
-									<img src={tile.icon1} alt="" class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid" />
+									<img
+										src={tile.icon1}
+										alt=""
+										class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid"
+									/>
 								</button>
 								<button on:click={() => changeTileValue(index, tileIndex, 'title1')}>
 									<p class="text-base mx-2">{tile.title1 || '[empty]'}</p>
@@ -190,7 +194,11 @@
 
 							<div class="flex items-center justify-center mt-1">
 								<button on:click={() => changeTileValue(index, tileIndex, 'icon2')}>
-									<img src={tile.icon2} alt="" class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid" />
+									<img
+										src={tile.icon2}
+										alt=""
+										class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid"
+									/>
 								</button>
 								<button on:click={() => changeTileValue(index, tileIndex, 'title2')}>
 									<p class="text-base mx-2">{tile.title2 || '[empty]'}</p>
@@ -199,6 +207,8 @@
 									<span class="material-symbols-outlined text-2xl">link</span>
 								</button>
 							</div>
+						{:else if tile.type === 'Empty'}
+							<p>Empty</p>
 						{/if}
 					</Tile>
 				{/each}

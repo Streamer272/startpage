@@ -6,7 +6,8 @@ interface ITileTypes {
 }
 export const TileTypes: ITileTypes = {
 	Weather: newWeather,
-	Shortcut: newShortcut
+	Shortcut: newShortcut,
+	Empty: newEmpty
 };
 
 export function newWeather(): Tile {
@@ -32,4 +33,10 @@ export function newShortcut(
 		title2: title2,
 		icon2: icon2
 	};
+}
+
+export function newEmpty(): Tile {
+	return {
+		type: 'Empty'
+	}
 }

@@ -33,7 +33,11 @@
 								class="flex items-center justify-center flex-row text-inherit visited:text-inherit"
 							>
 								{#if tile.icon1}
-									<img src={tile.icon1} alt={tile.title1} class="w-8 h-8 rounded-full border-2 border-neutral-100 border-solid bg-neutral-400" />
+									<img
+										src={tile.icon1}
+										alt={tile.title1}
+										class="w-8 h-8 rounded-full border-2 border-neutral-100 border-solid bg-neutral-400"
+									/>
 								{/if}
 								<p class="ml-2">{tile.title1}</p>
 							</a>
@@ -45,12 +49,18 @@
 								class="flex items-center justify-center flex-row text-inherit visited:text-inherit"
 							>
 								{#if tile.icon2}
-									<img src={tile.icon2} alt={tile.title2} class="w-8 h-8 rounded-full border-2 border-neutral-100 border-solid bg-neutral-400" />
+									<img
+										src={tile.icon2}
+										alt={tile.title2}
+										class="w-8 h-8 rounded-full border-2 border-neutral-100 border-solid bg-neutral-400"
+									/>
 								{/if}
 								<p class="ml-2 text-lg">{tile.title2}</p>
 							</a>
 						{/if}
 					</Tile>
+				{:else if tile.type === 'Empty'}
+					<Tile />
 				{/if}
 			{/each}
 		</div>
