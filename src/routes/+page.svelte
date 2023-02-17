@@ -3,8 +3,8 @@
 	import Time from '$lib/components/Time.svelte';
 	import Tile from '$lib/components/Tile.svelte';
 	import Weather from '$lib/components/Weather.svelte';
-	import { DEFAULT_ENABLE_SEARCH, DEFAULT_ROWS, getSetting } from '$lib/types/settings';
-	import type { Row } from '$lib/types/tile';
+	import { DEFAULT_ENABLE_SEARCH, DEFAULT_ROWS, getSetting } from '$lib/scripts/settings';
+	import type { Row } from '$lib/scripts/tile';
 
 	const rows: Row[] = getSetting('rows', DEFAULT_ROWS);
 </script>

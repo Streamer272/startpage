@@ -15,7 +15,7 @@
 		YEAR_FORMAT_OPTIONS,
 		getSetting,
 		DEFAULT_ENABLE_INTRODUCTION
-	} from '$lib/types/settings';
+	} from '$lib/scripts/settings';
 
 	let greeting = '';
 	let time = '';

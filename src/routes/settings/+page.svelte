@@ -22,9 +22,9 @@
 		DEFAULT_HOUR_FORMAT,
 		getSetting,
 		setSetting
-	} from '$lib/types/settings';
-	import type { Row } from '$lib/types/tile';
-	import { TileTypes } from '$lib/types/tile';
+	} from '$lib/scripts/settings';
+	import type { Row } from '$lib/scripts/tile';
+	import { TileTypes } from '$lib/scripts/tile';
 
 	// introduction
 	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);

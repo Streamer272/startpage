@@ -1,5 +1,5 @@
-import type { Row } from '$lib/types/tile';
-import { newWeather, newShortcut } from '$lib/types/tile';
+import type { Row } from '$lib/scripts/tile';
+import { newWeather, newShortcut } from '$lib/scripts/tile';
 
 export const HOUR_FORMAT_OPTIONS = ['12 hour', '24 hour'];
 export const DAY_FORMAT_OPTIONS = ['Short (Mon)', 'Long (Monday)', "Don't show day"];

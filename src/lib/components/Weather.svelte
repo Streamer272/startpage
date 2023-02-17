@@ -2,7 +2,7 @@
 	import CircularProgress from '@smui/circular-progress';
 	import Tile from '$lib/components/Tile.svelte';
 	import axios from 'axios';
-	import { getCookie, setCookie } from '$lib/types/settings';
+	import { getCookie, setCookie } from '$lib/scripts/settings';
 	import { onMount } from 'svelte';
 
 	let temp = '';
