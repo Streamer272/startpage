@@ -1,10 +1,13 @@
 export type Tile = any;
 export type Row = Tile[];
 
-export const TileTypes = {
-	Weather: newWeather,
-	Shortcut: newShortcut
-};
+interface ITileTypes {
+	readonly [key: string]: Function
+}
+export const TileTypes: ITileTypes = {
+	'Weather': newWeather,
+	'Shortcut': newShortcut
+}
 
 export function newWeather(): Tile {
 	return {

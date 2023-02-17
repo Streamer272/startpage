@@ -24,8 +24,7 @@
 		setSetting
 	} from '$lib/types/settings';
 	import type { Row } from '$lib/types/tile';
-
-	let rerender = false;
+	import { TileTypes } from '$lib/types/tile';
 
 	// introduction
 	let enableIntroduction = getSetting('enableIntroduction', DEFAULT_ENABLE_INTRODUCTION);
@@ -57,17 +56,33 @@
 
 	// rows
 	let rows: Row[] = getSetting('rows', DEFAULT_ROWS);
-	let rowsLength = rows.length;
-	$: setSetting('rows', rows);
+
+	let newTile = 'Weather';
 
 	function createRow() {
-		rows.push([]);
-		rowsLength = rows.length;
-		console.log('?', rows);
+		const temp = rows;
+		temp.push([]);
+		rows = temp;
+		setSetting('rows', rows);
 	}
 
 	function createTile(rowIndex: number) {
-		// TODO
+		const temp = rows;
+		temp[rowIndex].push(TileTypes[newTile]());
+		rows = temp;
+		setSetting('rows', rows);
+	}
+
+	function removeRow(rowIndex: number) {
+		const temp = rows;
+		temp.slice(rowIndex, 1);
+		rows = temp;
+	}
+
+	function removeTile(rowIndex: number, tileIndex: number) {
+		const temp = rows;
+		temp[rowIndex].slice(tileIndex, 1);
+		rows = temp;
 	}
 </script>
 
@@ -138,16 +153,21 @@
 		</FormField>
 	</Section>
 
-	{#each { length: rowsLength } as _, index}
-		<Section label={'Row'}>
+	{#each rows as row, index}
+		<Section label={'Row'} remove={() => removeRow(index)}>
 			<div class="flex items-center justify-center">
-				{#each rows[index] as tile}
+				{#each row as tile}
 					<Tile>
 						<p>{tile.type}</p>
 					</Tile>
 				{/each}
-				{#if rows[index].length < 3}
+				{#if row.length < 3}
 					<Tile>
+						<Select bind:value={newTile} label="New tile type">
+							{#each Object.keys(TileTypes) as type}
+								<Option value={type}>{type}</Option>
+							{/each}
+						</Select>
 						<button on:click={() => createTile(index)}>
 							<span class="material-symbols-outlined text-neutral-100 text-3xl">add</span>
 						</button>
