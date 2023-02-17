@@ -158,8 +158,14 @@
 	{#each rows as row, index}
 		<Section label={'Row'} remove={() => removeRow(index)}>
 			<div class="flex items-center justify-center">
-				{#each row as tile}
+				{#each row as tile, tileIndex}
 					<Tile>
+						<button
+							on:click={() => removeTile(index, tileIndex)}
+							class="border-none bg-transparent absolute top-2 right-2"
+						>
+							<span class="material-symbols-outlined text-neutral-100 text-xl">delete</span>
+						</button>
 						<p>{tile.type}</p>
 					</Tile>
 				{/each}
