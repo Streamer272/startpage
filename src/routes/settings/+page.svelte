@@ -75,14 +75,16 @@
 
 	function removeRow(rowIndex: number) {
 		const temp = rows;
-		temp.slice(rowIndex, 1);
+		temp.splice(rowIndex, 1);
 		rows = temp;
+		setSetting('rows', rows);
 	}
 
 	function removeTile(rowIndex: number, tileIndex: number) {
 		const temp = rows;
-		temp[rowIndex].slice(tileIndex, 1);
+		temp[rowIndex].splice(tileIndex, 1);
 		rows = temp;
+		setSetting('rows', rows);
 	}
 </script>
 
