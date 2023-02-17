@@ -86,6 +86,15 @@
 		rows = temp;
 		setSetting('rows', rows);
 	}
+
+	function changeTileValue(rowIndex: number, tileIndex: number, key: string) {
+		const value = window.prompt('Enter new value:');
+		if (!value) return;
+		const temp = rows;
+		temp[rowIndex][tileIndex][key] = value;
+		rows = temp;
+		setSetting('rows', rows);
+	}
 </script>
 
 <div class="flex items-center justify-center flex-col my-8">
@@ -160,13 +169,37 @@
 			<div class="flex items-center justify-center">
 				{#each row as tile, tileIndex}
 					<Tile>
-						<button
-							on:click={() => removeTile(index, tileIndex)}
-							class="border-none bg-transparent absolute top-2 right-2"
-						>
+						<button on:click={() => removeTile(index, tileIndex)} class="absolute top-2 right-2">
 							<span class="material-symbols-outlined text-neutral-100 text-xl">delete</span>
 						</button>
-						<p>{tile.type}</p>
+
+						{#if tile.type === 'Weather'}
+							<p>{tile.type}</p>
+						{:else if tile.type === 'Shortcut'}
+							<div class="flex items-center justify-center">
+								<button on:click={() => changeTileValue(index, tileIndex, 'icon1')}>
+									<img src={tile.icon1} alt="" class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid" />
+								</button>
+								<button on:click={() => changeTileValue(index, tileIndex, 'title1')}>
+									<p class="text-base mx-2">{tile.title1 || '[empty]'}</p>
+								</button>
+								<button on:click={() => changeTileValue(index, tileIndex, 'link1')}>
+									<span class="material-symbols-outlined text-2xl">link</span>
+								</button>
+							</div>
+
+							<div class="flex items-center justify-center mt-1">
+								<button on:click={() => changeTileValue(index, tileIndex, 'icon2')}>
+									<img src={tile.icon2} alt="" class="w-8 h-8 rounded-full bg-neutral-400 border-2 border-neutral-100 border-solid" />
+								</button>
+								<button on:click={() => changeTileValue(index, tileIndex, 'title2')}>
+									<p class="text-base mx-2">{tile.title2 || '[empty]'}</p>
+								</button>
+								<button on:click={() => changeTileValue(index, tileIndex, 'link2')}>
+									<span class="material-symbols-outlined text-2xl">link</span>
+								</button>
+							</div>
+						{/if}
 					</Tile>
 				{/each}
 				{#if row.length < 3}

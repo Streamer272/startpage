@@ -2,12 +2,12 @@ export type Tile = any;
 export type Row = Tile[];
 
 interface ITileTypes {
-	readonly [key: string]: Function
+	readonly [key: string]: Function;
 }
 export const TileTypes: ITileTypes = {
-	'Weather': newWeather,
-	'Shortcut': newShortcut
-}
+	Weather: newWeather,
+	Shortcut: newShortcut
+};
 
 export function newWeather(): Tile {
 	return {
