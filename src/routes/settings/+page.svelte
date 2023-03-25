@@ -212,18 +212,16 @@
 						{/if}
 					</Tile>
 				{/each}
-				{#if row.length < 3}
-					<Tile>
-						<Select bind:value={newTile} label="New tile type">
-							{#each Object.keys(TileTypes) as type}
-								<Option value={type}>{type}</Option>
-							{/each}
-						</Select>
-						<button on:click={() => createTile(index)}>
-							<span class="material-symbols-outlined text-neutral-100 text-3xl">add</span>
-						</button>
-					</Tile>
-				{/if}
+				<Tile>
+					<Select bind:value={newTile} label="New tile type">
+						{#each Object.keys(TileTypes) as type}
+							<Option value={type}>{type}</Option>
+						{/each}
+					</Select>
+					<button on:click={() => createTile(index)}>
+						<span class="material-symbols-outlined text-neutral-100 text-3xl">add</span>
+					</button>
+				</Tile>
 			</div>
 		</Section>
 	{/each}
