@@ -1,5 +1,15 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import hotkeys from 'hotkeys-js';
+
 	let value = '';
+
+	onMount(() => {
+		hotkeys('ctrl+k', (event) => {
+			event.preventDefault();
+			document.querySelector('input')?.focus();
+		});
+	});
 </script>
 
 <div
